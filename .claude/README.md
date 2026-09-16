@@ -41,3 +41,18 @@ python3 .claude/skills/ui-ux-pro-max/scripts/search.py "SaaS dashboard" --domain
 
 Mise à jour : `npx ui-ux-pro-max-cli init --ai claude`, ou recopier les dossiers de skills
 depuis `.claude/skills/` du dépôt source.
+
+---
+
+# Serveurs MCP
+
+Déclarés dans `.mcp.json` à la racine du projet (portée projet : disponibles pour
+quiconque ouvre ce dépôt avec Claude Code).
+
+## magicuidesign-mcp
+
+[Magic UI](https://magicui.design) — composants React/Tailwind animés, prêts à l'emploi.
+Lancé à la demande via `npx` (Node requis, aucune clé d'API).
+
+Claude Code demande une approbation au premier démarrage : les serveurs MCP définis dans
+un dépôt ne sont jamais exécutés sans accord explicite.
