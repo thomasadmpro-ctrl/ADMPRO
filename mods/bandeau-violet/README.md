@@ -3,6 +3,7 @@
 Bandeau noir et violet affiché au-dessus du prompt de Claude Code. Il montre en permanence :
 
 - 💜 le **projet en cours** (nom du dossier de travail) ;
+- 🌿 la **branche git** (mise à jour après chaque réponse ; absente hors dépôt git) ;
 - ⚡ / ✅ l'**état** : en cours ou prêt ;
 - ⏱️ la **durée du dernier tour** ;
 - 🛠️ le **nombre d'outils** utilisés pendant ce tour.
