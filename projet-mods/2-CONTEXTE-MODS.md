@@ -134,3 +134,16 @@ puis installer avec :
 ```
 
 Ce dépôt (`mods/`) peut servir de marketplace personnelle : demander à Claude « prépare la marketplace » le moment venu.
+
+## 10. Dépannage (vécu)
+
+| Symptôme | Cause | Solution |
+| --- | --- | --- |
+| `Failed to load hooks … expected record … path: hooks` | Claude Code trop ancien (ne connaît pas `"modules"`) | Mettre à jour Claude Code, puis relancer `claude` |
+| `claude --version` récent mais `/status` ancien | Plusieurs installations sur le Mac (ex. npm via nvm + Homebrew) ou session ouverte avant la mise à jour | `which -a claude`, n'en garder qu'une (Thomas : **Homebrew** `/opt/homebrew/bin/claude`), rouvrir le terminal |
+| `Unknown command: /bandeau` | Le mod n'est pas chargé | Vérifier `/plugin` (erreur ?), `/status` (version), réinstaller |
+| `/plugin install … --marketplace …` : « not found » | Option non supportée ou mod pas encore sur `main` | `/plugin marketplace add thomasadmpro-ctrl/ADMPRO` puis `/plugin install <mod>@admpro-mods` ; fusionner la PR avant |
+| Mod non actif dans une session cloud | « Not now » répondu à la question d'activation | Redemander l'activation ; sinon installer en local |
+
+Installation locale de Thomas : macOS, Claude Code via Homebrew (`brew upgrade --cask claude-code` pour mettre à jour).
+Après chaque nouveau mod : fusionner la PR, puis `/plugin marketplace update admpro-mods` et `/plugin install <mod>@admpro-mods`.
