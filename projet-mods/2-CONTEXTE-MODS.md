@@ -144,6 +144,7 @@ Ce dépôt (`mods/`) peut servir de marketplace personnelle : demander à Claude
 | `Unknown command: /bandeau` | Le mod n'est pas chargé | Vérifier `/plugin` (erreur ?), `/status` (version), réinstaller |
 | `/plugin install … --marketplace …` : « not found » | Option non supportée ou mod pas encore sur `main` | `/plugin marketplace add thomasadmpro-ctrl/ADMPRO` puis `/plugin install <mod>@admpro-mods` ; fusionner la PR avant |
 | Une nouvelle version ne s'affiche pas | Mod installé deux fois (portées `user` et `local`), l'ancienne gagne | `claude plugin list` ; `claude plugin uninstall <mod>@admpro-mods --scope local` puis `--scope user`, réinstaller avec `--scope user`. Toujours choisir la portée **user** |
+| Garde-fou `tool.check` ne se déclenche pas sur le Mac (2.1.309), même en auto mode | Le hook `tool.check` des mods n'agit pas sur cette version | Garde-fou réécrit en hook classique `PreToolUse` (bash) : marche partout. Pour un garde-fou, préférer ce format |
 | Mod non actif dans une session cloud | « Not now » répondu à la question d'activation | Redemander l'activation ; sinon installer en local |
 
 Installation locale de Thomas : macOS, Claude Code via Homebrew (`brew upgrade --cask claude-code` pour mettre à jour).
