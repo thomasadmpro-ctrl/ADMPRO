@@ -8,12 +8,12 @@
     {
       "name": "bandeau-violet",
       "source": "./mods/bandeau-violet",
-      "description": "Bandeau noir et violet au-dessus du prompt : projet en cours, état, durée du dernier tour et outils utilisés"
+      "description": "Bandeau noir et violet au-dessus du prompt : projet, branche git, état, durée du dernier tour et outils utilisés"
     },
     {
       "name": "panneau-notes",
       "source": "./mods/panneau-notes",
-      "description": "Panneau latéral noir et violet : les notes du projet en cours, gardées entre les sessions"
+      "description": "Panneau latéral noir et violet : notes et tâches à cocher du projet en cours, gardées entre les sessions"
     },
     {
       "name": "statut-git",

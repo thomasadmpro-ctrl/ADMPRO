@@ -1,8 +1,10 @@
 {
   "name": "panneau-notes",
-  "version": "0.1.0",
-  "description": "Panneau latéral noir et violet : les notes du projet en cours, gardées entre les sessions",
-  "author": { "name": "Thomas" },
+  "version": "0.2.0",
+  "description": "Panneau latéral noir et violet : notes et tâches à cocher du projet en cours, gardées entre les sessions",
+  "author": {
+    "name": "Thomas"
+  },
   "license": "MIT",
   "types": "./types/index.d.ts"
 }

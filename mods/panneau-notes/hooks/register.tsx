@@ -17,14 +17,19 @@ export const nomProjet = (cwd: string): string =>
 
 const cle = (p: string) => `notes:${p}`
 
-/** Lit les notes sauvegardées, en ignorant ce qui n'a pas la bonne forme. */
+/**
+ * Lit les notes sauvegardées, en ignorant ce qui n'a pas la bonne forme.
+ * Les notes de la version 0.1 (sans « fait ») deviennent des tâches à faire.
+ */
 export const nettoyer = (brut: unknown): Note[] =>
   Array.isArray(brut)
-    ? brut.filter(
-        (n): n is Note =>
-          typeof n === 'object' && n !== null &&
-          typeof (n as Note).id === 'number' && typeof (n as Note).texte === 'string',
-      )
+    ? brut.flatMap((n): Note[] => {
+        if (typeof n !== 'object' || n === null) return []
+        const { id, texte, fait } = n as Partial<Record<keyof Note, unknown>>
+        return typeof id === 'number' && typeof texte === 'string'
+          ? [{ id, texte, fait: fait === true }]
+          : []
+      })
     : []
 
 const sauver = async ($: EngineInterface, liste: Note[]) => {
@@ -37,8 +42,16 @@ const ajouter = async ($: EngineInterface, texte: string) => {
   if (propre === '') return false
   const liste = await read($, notes)
   const id = liste.reduce((max, n) => Math.max(max, n.id), 0) + 1
-  await sauver($, [...liste, { id, texte: propre }])
+  await sauver($, [...liste, { id, texte: propre, fait: false }])
   return true
+}
+
+const cocher = async ($: EngineInterface, id: number) => {
+  await sauver($, (await read($, notes)).map(n => (n.id === id ? { ...n, fait: !n.fait } : n)))
+}
+
+const viderFaites = async ($: EngineInterface) => {
+  await sauver($, (await read($, notes)).filter(n => !n.fait))
 }
 
 const supprimer = async ($: EngineInterface, id: number) => {
@@ -79,6 +92,9 @@ export const register: Register = on => {
     const { Box, Text, Button } = table
     const liste = await read($, notes)
     const p = (await read($, projet)) || 'projet'
+    const faites = liste.filter(n => n.fait).length
+    // À faire d'abord, puis les tâches terminées.
+    const triees = [...liste.filter(n => !n.fait), ...liste.filter(n => n.fait)]
     const saisie =
       e.surface !== 'mobile' && 'Input' in table ? (
         <table.Input
@@ -95,24 +111,36 @@ export const register: Register = on => {
       <Box flexDirection="column" gap="sm" paddingX="sm">
         <Box flexDirection="row" justifyContent="space-between">
           <Text color={VIOLET} weight="bold" size="heading">📁 {p}</Text>
-          <Text color={GRIS}>{liste.length} note{liste.length > 1 ? 's' : ''}</Text>
+          <Text color={GRIS}>
+            {faites}/{liste.length} faite{faites > 1 ? 's' : ''}
+          </Text>
         </Box>
         {saisie}
         {liste.length === 0 && <Text color={GRIS} italic>Aucune note pour l'instant ✨</Text>}
-        {liste.map(n => (
+        {triees.map(n => (
           <Box
             key={`note-${n.id}`}
             flexDirection="row"
             justifyContent="space-between"
             alignItems="center"
             borderStyle="round"
-            borderColor={VIOLET_FONCE}
+            borderColor={n.fait ? GRIS : VIOLET_FONCE}
+            borderDimColor={n.fait}
             paddingX="sm"
+            gap="sm"
           >
-            <Text color="#e9d5ff">• {n.texte}</Text>
+            <Button key={`coche-${n.id}`} label={n.fait ? '☑' : '☐'} onPress={() => cocher($, n.id)} />
+            <Box flexGrow={1}>
+              <Text color={n.fait ? GRIS : '#e9d5ff'} strikethrough={n.fait}>
+                {n.texte}
+              </Text>
+            </Box>
             <Button key={`suppr-${n.id}`} label="✕" onPress={() => supprimer($, n.id)} />
           </Box>
         ))}
+        {faites > 0 && (
+          <Button key="vider" label={`🧹 Retirer les ${faites} faite${faites > 1 ? 's' : ''}`} onPress={() => viderFaites($)} />
+        )}
       </Box>
     )
   })
