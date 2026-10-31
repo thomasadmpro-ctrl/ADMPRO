@@ -6,7 +6,7 @@
 ## Qui je suis
 
 - Prénom / pseudo : Thomas / Tom
-- Niveau en code : [ ] débutant  [ ] intermédiaire  [ ] développeur
+- Niveau en code : [x] débutant  [ ] intermédiaire  [ ] développeur — je développe uniquement accompagné de Claude : explique simplement, fais le travail technique à ma place, guide-moi pas à pas
 - Activité / usage principal de Claude : dev, création de sites et d'applications
 
 ## Où j'utilise Claude (surfaces à supporter)
