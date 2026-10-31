@@ -1,0 +1,14 @@
+{
+  "name": "admpro-mods",
+  "description": "Les mods d'interface de Thomas pour Claude Code",
+  "owner": {
+    "name": "Thomas"
+  },
+  "plugins": [
+    {
+      "name": "bandeau-violet",
+      "source": "./mods/bandeau-violet",
+      "description": "Bandeau noir et violet au-dessus du prompt : projet en cours, état, durée du dernier tour et outils utilisés"
+    }
+  ]
+}
