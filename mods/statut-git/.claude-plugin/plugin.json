@@ -1,0 +1,7 @@
+{
+  "name": "statut-git",
+  "version": "0.1.0",
+  "description": "Ligne de statut : projet en cours et branche git, toujours visibles",
+  "author": { "name": "Thomas" },
+  "license": "MIT"
+}

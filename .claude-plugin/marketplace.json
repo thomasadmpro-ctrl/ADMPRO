@@ -9,6 +9,21 @@
       "name": "bandeau-violet",
       "source": "./mods/bandeau-violet",
       "description": "Bandeau noir et violet au-dessus du prompt : projet en cours, état, durée du dernier tour et outils utilisés"
+    },
+    {
+      "name": "panneau-notes",
+      "source": "./mods/panneau-notes",
+      "description": "Panneau latéral noir et violet : les notes du projet en cours, gardées entre les sessions"
+    },
+    {
+      "name": "statut-git",
+      "source": "./mods/statut-git",
+      "description": "Ligne de statut : projet en cours et branche git, toujours visibles"
+    },
+    {
+      "name": "garde-fou",
+      "source": "./mods/garde-fou",
+      "description": "Demande ta confirmation avant les commandes risquées : suppression de fichiers, git push, reset --hard, sudo…"
     }
   ]
 }
