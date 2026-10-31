@@ -1,0 +1,7 @@
+{
+  "name": "garde-fou",
+  "version": "0.1.0",
+  "description": "Demande ta confirmation avant les commandes risquées : suppression de fichiers, git push, reset --hard, sudo…",
+  "author": { "name": "Thomas" },
+  "license": "MIT"
+}
