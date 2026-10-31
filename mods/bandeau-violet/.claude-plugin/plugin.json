@@ -2,5 +2,9 @@
   "name": "bandeau-violet",
   "version": "0.1.0",
   "description": "Bandeau noir et violet au-dessus du prompt : projet en cours, état, durée du dernier tour et outils utilisés",
-  "types": "./types/index.d.ts"
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Thomas"
+  },
+  "license": "MIT"
 }
