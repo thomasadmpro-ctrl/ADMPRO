@@ -6,7 +6,10 @@ Commandes surveillées : `rm`/`rmdir`/`unlink`/`shred`, `find … -delete`, `git
 
 - Les autres commandes ne changent pas.
 - Une règle de refus déjà en place reste un refus.
-- Si plus personne ne peut répondre (mode sans écran), la commande risquée est refusée.
+- Marche aussi en **auto mode** : la confirmation t'est toujours demandée.
+- Si personne ne peut répondre (mode sans écran), la commande risquée n'est pas lancée.
+- Version 0.2 : hook classique `PreToolUse` (script bash `hooks/garde-fou.sh`), compatible avec les versions de Claude Code qui ne gèrent pas encore les hooks `tool.check`.
+- Tests : `bash tests/garde-fou.test.sh`.
 
 ## Installation
 
